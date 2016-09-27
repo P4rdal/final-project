@@ -1,0 +1,131 @@
+
+
+/* ESTRUTURA DE DADOS DO PACIENTE FALTA OS NOMES DOS PONTEIROS DAS LISTA DE : CONSULTA,PROCEDIMENTOS,MEDICAMENTOS E  */
+
+typedef struct Paciente{
+
+	char nome [30];
+	char codigo[10] ;
+	/* Lconsulta  "nome do ponteiro da lista de consulta" */
+	/* Lprocedimento "nome do ponteiro da lista de procedimentos" */
+	/* Lmedicamento "nome do ponteiro da lista de medicamentos" */
+	/* Ldiaria "nome do ponteiro da lista de medicamentos" */
+
+};
+typedef struct Paciente Tipopaciente;
+
+
+
+/* ESTRUTURA DE DADOS DA LISTA DE PACIENTES */
+
+typedef struct listapaciente {
+
+   Tipopaciente  paciente;
+   Tipopaciente *proximo;
+
+};
+typedef struct listapaciente Lpaciente;
+
+
+
+/* FUNÇÃO CRIA PACIENTE E RETORNA O PONTEIRO DO NOVO ELEMNTO 
+OBS:O NOVO PONTEIRO JÁ TEM PONTEIRO PROXIMO = NULL */
+Tipopaciente *criapaciente (){
+
+Tipopaciente *novo;
+novo = (Tipopaciente *)malloc(sizeof(Tipopaciente));
+return novo;
+
+}
+
+
+
+/* FUNÇÃO CRIA LISTA DE PACIENTES E RETORNA O PONTEIRO DO NOVO ELEMNTO
+OBS:O NOVO PONTEIRO JÁ TEM PONTEIRO PROXIMO = NULL */
+
+Lpaciente *crialistapaciente (){
+
+Lpaciente *novo;
+novo = (Lpaciente *)malloc(sizeof(Lpaciente));
+novo->proximo = NULL;
+return novo;
+
+}
+
+
+
+/* FUNÇÃO RETORNA O INTEIRO 1 SE A LISTA ESTIVER VAZIA , RETORNA 0 SE NÃO ESTIVER */
+int VerificaListaVaziaPaciente (Lpaciente *listadepaciente){
+
+if (listadepaciente->proximo == NULL){
+
+ return 1;
+}
+ return 0;
+}
+
+
+
+void ImprimeListaPacientes(Lpaciente *listadepaciente){
+
+ Tipopaciente *aux;
+ aux = criapaciente();
+
+if (VerificaListaVaziaPaciente(listadepaciente) == 1){
+
+   printf("Sem Pacientes Cadastrados");
+
+}
+  else
+{
+
+  while (listadepaciente->proximo != NULL){
+
+  *aux = listadepaciente->paciente;
+  printf(" NOME : %s \n",&aux->nome);
+  printf(" NOME : %s \n",&aux->codigo);
+  printf("\n");
+
+
+  }
+
+}
+
+}
+
+
+
+
+Tipopaciente *CadastrarCliente (Lpaciente * listapaciente){
+
+Tipopaciente *aux;
+aux = crialistapaciente();
+printf("digite o nome do paciente");
+scanf("%s",aux->nome);
+printf("digite o nome codigo do paciente");
+scanf("%s",aux->codigo);
+
+
+
+Lpaciente *tmp;
+tmp = crialistapaciente();
+tmp->paciente = *aux;
+tmp->proximo = listapaciente->proximo;
+listapaciente->proximo = tmp;
+
+free(tmp);
+free(aux);
+
+}
+
+
+
+
+Tipopaciente *SelecionaPaciente () //Retorna o Ponteiro do TipoCliente em uma lista de LPaciente
+{
+
+
+
+
+}
+
